@@ -84,20 +84,8 @@ import sys.io.File;
 #end
 
 #if VIDEOS_ALLOWED
-//#if (hxCodec >= "2.6.1") 
-//import hxcodec.VideoHandler as MP4Handler;
-//import hxcodec.VideoSprite as MP4Sprite;
-//#elseif (hxCodec == "2.6.0") 
-//import VideoHandler as MP4Handler;
-//import VideoSprite as MP4Sprite;
-//#else 
-//import vlc.MP4Handler; 
-//import vlc.MP4Sprite; 
-//#end
-
-// CODEC 2.5.1 BREAKS THIS SHIT USE 2.6.1 ITS SO MUCH BETTER .5 IS A FUCK KILL EM ALL 1984 I FORGET THE REST IM GOING TO UPDATE TO 3.X.X IN THE NEXT UPDATE USE 2.6.1 FO NOW
-import hxcodec.VideoHandler;
-import hxcodec.VideoSprite;
+import VideoHandler;
+import VideoSprite;
 #end
 
 using StringTools;
