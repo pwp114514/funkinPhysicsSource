@@ -5,7 +5,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.FlxGraphic;
 import flixel.util.FlxColor;
-#if VIDEO_ALLOWED
+#if VIDEOS_ALLOWED
 import VideoHandler;
 #end
 
