@@ -58,7 +58,7 @@ class VideoSpriteVolFix extends FlxSprite
 
 		if (bitmap.isPlaying && bitmap.isDisplaying && bitmap.bitmapData != null && !oneTime)
 		{
-            var graphic:FlxGraphic = FlxG.bitmap.add(bitmap.bitmapData, false, bitmap.mrl);
+            var graphic:FlxGraphic = FlxG.bitmap.add(bitmap.bitmapData, false);
 			if (graphic.imageFrame.frame == null)
 			{
 				#if HXC_DEBUG_TRACE
