@@ -5,8 +5,9 @@ import flixel.FlxG;
 import openfl.Lib;
 import openfl.events.Event;
 import sys.FileSystem;
+#if VIDEO_ALLOED
 import vlc.VLCBitmap;
-
+#end
 /**
  * TOP TEN STUPIDEST FUCKING THINGS IVE DONE FOR FUNKIN PHYSICS NUMBER 1 THIS
  * I LITERALLY HATE THIS SO MUCH GOD. I WAS ON THE VERGE OF LOSING MY MIND FIGURING OUT THIS GOD DAMN VOLUME CODE
