@@ -5,7 +5,7 @@ import flixel.FlxG;
 import openfl.Lib;
 import openfl.events.Event;
 import sys.FileSystem;
-#if VIDEO_ALLOED
+#if VIDEOS_ALLOED
 import vlc.VLCBitmap;
 #end
 /**
