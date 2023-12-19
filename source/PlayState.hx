@@ -83,6 +83,8 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 
+import VideoSpriteVolFix;
+
 #if VIDEOS_ALLOWED
 import VideoHandler;
 import VideoSprite;
@@ -1096,7 +1098,7 @@ class PlayState extends MusicBeatState
 
 				#if VIDEOS_ALLOWED
 				//load the video offscreen because im too lazy to figure out video caching
-				var fakeWeegeeVideo:VideoSprite = new VideoSprite();
+				var fakeWeegeeVideo:VideoSpriteVolFix = new VideoSpriteVolFix();
 				fakeWeegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
 				fakeWeegeeVideo.graphicLoadedCallback = function()
 				{
@@ -1104,7 +1106,7 @@ class PlayState extends MusicBeatState
 					fakeWeegeeVideo.bitmap.dispose();
 					fakeWeegeeVideo.kill();
 				}
-				weegeeVideo = new VideoSprite(800, 1000);
+				weegeeVideo = new VideoSpriteVolFix(800, 1000);
 				weegeeVideo.setGraphicSize(Std.int(weegeeVideo.width * 3.75));
 				//precacheList.set('mama_luigi_for_you_mario', 'video');
 				//weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
