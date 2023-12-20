@@ -157,7 +157,7 @@ class Paths
 
 	inline public static function getPreloadPath(file:String = '')
 	{
-		return 'assets/$file';
+		return SUtil.getPath() + 'assets/$file';
 	}
 
 	inline static public function file(file:String, type:AssetType = TEXT, ?library:String)
@@ -201,7 +201,7 @@ class Paths
 			return file;
 		}
 		#end
-		return 'assets/videos/$key.$VIDEO_EXT';
+		return SUtil.getPath() + 'assets/videos/$key.$VIDEO_EXT';
 	}
 
 	static public function sound(key:String, ?library:String):Sound
@@ -278,7 +278,7 @@ class Paths
 			return file;
 		}
 		#end
-		return 'assets/fonts/$key';
+		return SUtil.getPath() + 'assets/fonts/$key';
 	}
 
 	inline static public function fileExists(key:String, type:AssetType, ?ignoreMods:Bool = false, ?library:String)
@@ -399,7 +399,7 @@ class Paths
 
 	#if MODS_ALLOWED
 	inline static public function mods(key:String = '') {
-		return 'mods/' + key;
+		return SUtil.getPath() + 'mods/' + key;
 	}
 
 	inline static public function modsFont(key:String) {
@@ -458,7 +458,7 @@ class Paths
 				return fileToCheck;
 
 		}
-		return 'mods/' + key;
+		return SUtil.getPath() + 'mods/' + key;
 	}
 
 	public static var globalMods:Array<String> = [];
@@ -469,7 +469,7 @@ class Paths
 	static public function pushGlobalMods() // prob a better way to do this but idc
 	{
 		globalMods = [];
-		var path:String = 'modsList.txt';
+		var path:String = SUtil.getPath() + 'modsList.txt';
 		if(FileSystem.exists(path))
 		{
 			var list:Array<String> = CoolUtil.coolTextFile(path);
