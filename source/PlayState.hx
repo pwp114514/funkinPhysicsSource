@@ -4584,7 +4584,9 @@ class PlayState extends MusicBeatState
 		}
 		bg.scrollFactor.set();
 		add(bg);
+		#if Windows
 		FlxTransWindow.getWindowsTransparent();
+		#end
 	}
 
 	function popupWindow(customWidth:Int, customHeight:Int, ?customX:Int, ?customY:Int, ?customName:String) {
