@@ -30,6 +30,7 @@ class StaticImageCutscene extends FlxSpriteGroup
 	// correct order of noises on this corresponds each image
 	var soundArray:Array<String> = [];
 	var curSound:Int = 0;
+	private var controls(get, never):Controls;
 
 	public function new()
 	{
