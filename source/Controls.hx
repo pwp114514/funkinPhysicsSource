@@ -759,14 +759,6 @@ class Controls extends FlxActionSet
 		trackedinputsUI.push(input);
 		action.add(input);
 	}
-
-	public function setHitBox(Hitbox:FlxNewHitbox) 
-	{
-		inline forEachBound(Control.NOTE_UP, (action, state) -> addbuttonuNOTES(action, hitbox.buttonUp, state));
-		inline forEachBound(Control.NOTE_DOWN, (action, state) -> addbuttonuNOTES(action, hitbox.buttonDown, state));
-		inline forEachBound(Control.NOTE_LEFT, (action, state) -> addbuttonuNOTES(action, hitbox.buttonLeft, state));
-		inline forEachBound(Control.NOTE_RIGHT, (action, state) -> addbuttonuNOTES(action, hitbox.buttonRight, state));	
-	}
 	
 	
 	public function setNewHitBox(Hitbox:FlxNewHitbox)
