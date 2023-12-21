@@ -1269,7 +1269,7 @@ class PlayState extends MusicBeatState
 		// "GLOBAL" SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
+		var foldersToCheck:Array<String> = [SUtil.getPath() + Paths.getPreloadPath('scripts/')];
 
 		#if MODS_ALLOWED
 		foldersToCheck.insert(0, Paths.mods('scripts/'));
@@ -1694,8 +1694,11 @@ class PlayState extends MusicBeatState
 		doof.cameras = [camHUD];
 		
 		#if android
-		addAndroidControls();
-		androidc.visible = false;
+		if (curSong != 'Introllduction')
+		{
+			addAndroidControls();
+			androidc.visible = false;
+		}
 		#end
 
 		// if (SONG.song == 'South')
@@ -1708,7 +1711,7 @@ class PlayState extends MusicBeatState
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
+		var foldersToCheck:Array<String> = [SUtil.getPath() + Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
 
 		#if MODS_ALLOWED
 		foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));
@@ -2294,6 +2297,7 @@ class PlayState extends MusicBeatState
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
 			#if android
+			if (curSong != 'Introllduction')
 			androidc.visible = true;
 			#end
 			generateStaticArrows(0);
@@ -2596,6 +2600,11 @@ class PlayState extends MusicBeatState
 		#end
 		setOnLuas('songLength', songLength);
 		callOnLuas('onSongStart', []);
+		
+		if (curSong == 'Introllduction')
+		{
+			addAndroidControls();
+		}
 	}
 
 	var debugNum:Int = 0;
