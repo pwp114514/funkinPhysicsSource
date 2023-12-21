@@ -83,11 +83,21 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 
-import VideoSpriteVolFix;
-
 #if VIDEOS_ALLOWED
-import VideoHandler;
-import VideoSprite;
+//#if (hxCodec >= "2.6.1") 
+//import hxcodec.VideoHandler as MP4Handler;
+//import hxcodec.VideoSprite as MP4Sprite;
+//#elseif (hxCodec == "2.6.0") 
+//import VideoHandler as MP4Handler;
+//import VideoSprite as MP4Sprite;
+//#else 
+//import vlc.MP4Handler; 
+//import vlc.MP4Sprite; 
+//#end
+
+// CODEC 2.5.1 BREAKS THIS SHIT USE 2.6.1 ITS SO MUCH BETTER .5 IS A FUCK KILL EM ALL 1984 I FORGET THE REST IM GOING TO UPDATE TO 3.X.X IN THE NEXT UPDATE USE 2.6.1 FO NOW
+import hxcodec.VideoHandler;
+import hxcodec.VideoSprite;
 #end
 
 using StringTools;
@@ -1100,6 +1110,12 @@ class PlayState extends MusicBeatState
 				//load the video offscreen because im too lazy to figure out video caching
 				var fakeWeegeeVideo:VideoSprite = new VideoSprite();
 				fakeWeegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
+				fakeWeegeeVideo.graphicLoadedCallback = function()
+				{
+					fakeWeegeeVideo.bitmap.pause();
+					fakeWeegeeVideo.bitmap.dispose();
+					fakeWeegeeVideo.kill();
+				}
 				weegeeVideo = new VideoSprite(800, 1000);
 				weegeeVideo.setGraphicSize(Std.int(weegeeVideo.width * 3.75));
 				//precacheList.set('mama_luigi_for_you_mario', 'video');
@@ -1621,7 +1637,6 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
-		
 
 		//check for oil and magnet notes so we can preload and set up their gimmicks
 		for (i in 0...unspawnNotes.length)
@@ -1681,11 +1696,6 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-		
-		#if android
-		addAndroidControls();
-		androidc.visible = false;
-		#end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1697,7 +1707,7 @@ class PlayState extends MusicBeatState
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
 		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [SUtil.getPath() + Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
+		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + Paths.formatToSongPath(SONG.song) + '/')];
 
 		#if MODS_ALLOWED
 		foldersToCheck.insert(0, Paths.mods('data/' + Paths.formatToSongPath(SONG.song) + '/'));
@@ -1730,11 +1740,11 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'trolling' | 'tomfoolery':
-					/*var cutscenelol:StaticImageCutscene = new StaticImageCutscene();
+					var cutscenelol:StaticImageCutscene = new StaticImageCutscene();
 					cutscenelol.scrollFactor.set();
 					cutscenelol.finishThing = startCountdown;
 					cutscenelol.cameras = [camOther];
-					add(cutscenelol);*/
+					add(cutscenelol);
 
 				case 'impending-doom':
 					startVideo('impending_cuts');	
@@ -2282,9 +2292,7 @@ class PlayState extends MusicBeatState
 		var ret:Dynamic = callOnLuas('onStartCountdown', [], false);
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
-			#if android
-			androidc.visible = true;
-			#end
+
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			for (i in 0...playerStrums.length) {
@@ -3106,7 +3114,7 @@ class PlayState extends MusicBeatState
 		if (mlgShader != null)
 			mlgShader.hue += elapsed * FlxG.random.int(0, 10);
 
-		if (controls.PAUSE #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
+		if (controls.PAUSE && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', [], false);
 			if(ret != FunkinLua.Function_Stop) {
@@ -4592,9 +4600,7 @@ class PlayState extends MusicBeatState
 		}
 		bg.scrollFactor.set();
 		add(bg);
-		#if Windows
 		FlxTransWindow.getWindowsTransparent();
-		#end
 	}
 
 	function popupWindow(customWidth:Int, customHeight:Int, ?customX:Int, ?customY:Int, ?customName:String) {
@@ -4790,10 +4796,7 @@ class PlayState extends MusicBeatState
 				return;
 			}
 		}
-		
-		#if android
-		androidc.visible = false;
-		#end
+
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;
