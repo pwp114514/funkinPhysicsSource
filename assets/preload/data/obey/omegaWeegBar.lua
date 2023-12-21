@@ -19,6 +19,15 @@ function opponentNoteHit(membersIndex, noteData, noteType, isSustainNote)
     end
 end
 
+function onCreatePost()
+	makeLuaText('tipsandroid', 'Click Screen !', 0, 0, 0)
+	addLuaText('tipsandroid')
+	setTextSize('tipsandroid', 30)
+	screenCenter('tipsandroid')
+	setProperty('tipsandroid.y', screenHeight - getProperty('tipsandroid.height') - 50)
+	setObjectCamera('tipsandroid', 'camOther')
+end
+
 function onUpdate(elapsed)
     if getProperty('spaceMashImage.alpha') >= 1 then
         setHealth(0)
@@ -28,7 +37,7 @@ function onUpdate(elapsed)
             setProperty('spaceMashImage.alpha', getProperty('spaceMashImage.alpha') - 0.05)
         end
     end
-    
+    setProperty('tipsandroid.alpha', getProperty('spaceMashImage.alpha'))
     --iconMult = getProperty('healthBar.y') + ((getProperty('healthBar.width') * getProperty('healthBar.percent') * 0.01) - (150 * getProperty('fakeIcon.scale.y')) / 2 - 26 * 2)
     --setProperty('fakeIcon.y',iconMult - 240)
     --setProperty('fakeIcon.origin.y',-100)
