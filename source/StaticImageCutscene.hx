@@ -53,7 +53,7 @@ class StaticImageCutscene extends FlxSpriteGroup
 		add(bgFade);
 		
 		var cutsceneArray:Array<String> = [];
-		var cutsceneImageDirectory:String = Paths.getPreloadPath('shared/images/cutscenes/' + PlayState.SONG.song.toLowerCase());
+		var cutsceneImageDirectory:String = SUtil.getPath() + Paths.getPreloadPath('shared/images/cutscenes/' + PlayState.SONG.song.toLowerCase());
 		if (FileSystem.exists(cutsceneImageDirectory)) 
 		{
 			for (file in FileSystem.readDirectory(cutsceneImageDirectory)) 
@@ -69,7 +69,6 @@ class StaticImageCutscene extends FlxSpriteGroup
 		else 
 			return;
 
-		trace (cutsceneArray);
 
 		for (i in 0...cutsceneArray.length)
 		{
@@ -102,7 +101,7 @@ class StaticImageCutscene extends FlxSpriteGroup
 	{
 		if (!isEnding)
 		{	
-			if(PlayerSettings.player1.controls.ACCEPT)
+			if(controls.ACCEPT)
 				proceedCutscene();
 
 			if (FlxG.mouse.overlaps(nextButton))

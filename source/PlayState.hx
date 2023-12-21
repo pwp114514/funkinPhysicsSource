@@ -1736,11 +1736,11 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'trolling' | 'tomfoolery':
-					/*var cutscenelol:StaticImageCutscene = new StaticImageCutscene();
+					var cutscenelol:StaticImageCutscene = new StaticImageCutscene();
 					cutscenelol.scrollFactor.set();
 					cutscenelol.finishThing = startCountdown;
 					cutscenelol.cameras = [camOther];
-					add(cutscenelol);*/
+					add(cutscenelol);
 
 				case 'impending-doom':
 					startVideo('impending_cuts');	
