@@ -228,6 +228,7 @@ enum FlxDPadMode {
 	FULL;
 	RIGHT_FULL;
 	DUO;
+	CHART_EDITOR;
 	NONE;
 }
 
