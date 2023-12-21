@@ -103,7 +103,7 @@ class StaticImageCutscene extends FlxSpriteGroup
 	{
 		if (!isEnding)
 		{	
-			if(controls.ACCEPT)
+			if(PlayerSettings.player1.controls.ACCEPT)
 				proceedCutscene();
 
 			if (FlxG.mouse.overlaps(nextButton))
