@@ -104,8 +104,9 @@ class StaticImageCutscene extends FlxSpriteGroup
 		{	
 			if(PlayerSettings.player1.controls.ACCEPT)
 				proceedCutscene();
-
-			if (FlxG.mouse.overlaps(nextButton))
+			
+			#if android
+			if (FlxG.mouse.pressed)
 			{
 				if (!nextSelected)
 				{
@@ -113,7 +114,7 @@ class StaticImageCutscene extends FlxSpriteGroup
 					nextButton.updateHitbox();
 					nextButton.offset.set();
 				}
-
+				
 				if (FlxG.mouse.justPressed)
 					proceedCutscene();
 
@@ -126,6 +127,29 @@ class StaticImageCutscene extends FlxSpriteGroup
 				nextButton.updateHitbox();
 				nextButton.offset.set();
 			}
+			#else
+			if (FlxG.mouse.overlaps(nextButton))
+			{
+				if (!nextSelected)
+				{
+					nextButton.setGraphicSize(240);
+					nextButton.updateHitbox();
+					nextButton.offset.set();
+				}
+				
+				if (FlxG.mouse.justPressed)
+					proceedCutscene();
+
+				nextSelected = true;
+			}
+			else
+			{
+				nextSelected = false;
+				nextButton.setGraphicSize(210);
+				nextButton.updateHitbox();
+				nextButton.offset.set();
+			}
+			#end
 		}
 
 	/*	if (dialogueOpened && !dialogueStarted)
