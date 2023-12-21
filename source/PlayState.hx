@@ -1621,6 +1621,7 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
+		
 
 		//check for oil and magnet notes so we can preload and set up their gimmicks
 		for (i in 0...unspawnNotes.length)
@@ -1680,6 +1681,11 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
+		
+		#if android
+		addAndroidControls();
+		androidc.visible = false;
+		#end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
@@ -1724,11 +1730,11 @@ class PlayState extends MusicBeatState
 			switch (daSong)
 			{
 				case 'trolling' | 'tomfoolery':
-					var cutscenelol:StaticImageCutscene = new StaticImageCutscene();
+					/*var cutscenelol:StaticImageCutscene = new StaticImageCutscene();
 					cutscenelol.scrollFactor.set();
 					cutscenelol.finishThing = startCountdown;
 					cutscenelol.cameras = [camOther];
-					add(cutscenelol);
+					add(cutscenelol);*/
 
 				case 'impending-doom':
 					startVideo('impending_cuts');	
@@ -2276,7 +2282,9 @@ class PlayState extends MusicBeatState
 		var ret:Dynamic = callOnLuas('onStartCountdown', [], false);
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
-
+			#if android
+			androidc.visible = true;
+			#end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			for (i in 0...playerStrums.length) {
@@ -3098,7 +3106,7 @@ class PlayState extends MusicBeatState
 		if (mlgShader != null)
 			mlgShader.hue += elapsed * FlxG.random.int(0, 10);
 
-		if (controls.PAUSE && startedCountdown && canPause)
+		if (controls.PAUSE #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', [], false);
 			if(ret != FunkinLua.Function_Stop) {
@@ -4782,7 +4790,10 @@ class PlayState extends MusicBeatState
 				return;
 			}
 		}
-
+		
+		#if android
+		androidc.visible = false;
+		#end
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;

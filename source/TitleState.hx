@@ -88,7 +88,11 @@ class TitleState extends MusicBeatState
 		#end
 		// Just to load a mod on start up if ya got one. For mods that change the menu music and bg
 		WeekData.loadTheFirstEnabledMod();
-
+		
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+		
 		//trace(path, FileSystem.exists(path));
 
 		/*#if (polymod && !html5)
