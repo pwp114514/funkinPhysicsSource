@@ -118,7 +118,7 @@ class FreeplayState extends MusicBeatState
 		}
 		WeekData.loadTheFirstEnabledMod();*/
 
-		var initSonglist = CoolUtil.coolTextFile(Paths.txt(type + (type != '' ? 'FreeplaySongList' : 'freeplaySongList')));
+		var initSonglist = CoolUtil.coolTextFile(SUtil.getPath() + Paths.txt(type + (type != '' ? 'FreeplaySongList' : 'freeplaySongList')));
 
 		for (i in 0...initSonglist.length)//woo yea woo this works woo
 		{

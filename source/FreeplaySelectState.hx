@@ -124,6 +124,12 @@ class FreeplaySelectState extends MusicBeatState
 
 		var backButton:MenuBackButton = new MenuBackButton(new MainMenuState());
 		add(backButton);
+		
+		#if android
+		addVirtualPad(LEFT_RIGHT, NONE);
+		_virtualpad.buttonLeft.x += 150;
+		_virtualpad.buttonRight.x += 150;
+		#end
 
 		super.create();
 	}
