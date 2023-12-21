@@ -13,7 +13,6 @@ import flixel.input.keyboard.FlxKey;
 
 #if android
 import flixel.group.FlxGroup;
-import android.FlxHitbox;
 import android.FlxNewHitbox;
 import android.FlxVirtualPad;
 import flixel.ui.FlxButton;
@@ -761,7 +760,7 @@ class Controls extends FlxActionSet
 		action.add(input);
 	}
 
-	public function setHitBox(hitbox:FlxHitbox) 
+	public function setHitBox(Hitbox:FlxNewHitbox) 
 	{
 		inline forEachBound(Control.NOTE_UP, (action, state) -> addbuttonuNOTES(action, hitbox.buttonUp, state));
 		inline forEachBound(Control.NOTE_DOWN, (action, state) -> addbuttonuNOTES(action, hitbox.buttonDown, state));
