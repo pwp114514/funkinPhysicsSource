@@ -126,6 +126,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		changeSelection();
 		reloadCheckboxes();
+		
+		addVirtualPad(UP_DOWN, A_B_C);
 	}
 
 	public function addOption(option:Option) {
