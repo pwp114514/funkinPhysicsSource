@@ -127,6 +127,7 @@ class GameOverSubstateAwestruck extends MusicBeatSubstate
 	
 		#if android
 		addVirtualPad(LEFT_RIGHT, A_B);
+		addPadCamera();
 		#end
 
 		//if (PlayState.deathCounter > 1)

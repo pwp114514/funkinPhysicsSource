@@ -2604,6 +2604,7 @@ class PlayState extends MusicBeatState
 		if (curSong == 'Introllduction')
 		{
 			addAndroidControls();
+			androidc.visible = true;
 		}
 	}
 
