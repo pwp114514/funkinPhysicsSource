@@ -78,6 +78,10 @@ class GameOverSubstateCY extends MusicBeatSubstate
 		{
 			jumpscare();
 		});
+		
+		#if android
+		addVirtualPad(NONE, A_B);
+		#end
 	}
 
 	override function update(elapsed:Float)

@@ -64,6 +64,10 @@ class GameOverSubstateIDIOT extends MusicBeatSubstate
 			FlxG.sound.music.fadeIn(4, 0, 1);
 			FlxTween.tween(dead, {alpha: 1}, 4, {ease: FlxEase.linear});
 		});
+		
+			#if android
+		addVirtualPad(NONE, A_B);
+		#end
 	}
 
 	var isFollowingAlready:Bool = false;

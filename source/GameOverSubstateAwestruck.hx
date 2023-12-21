@@ -124,6 +124,10 @@ class GameOverSubstateAwestruck extends MusicBeatSubstate
 		camFollowPos = new FlxObject(0, 0, 1, 1);
 		camFollowPos.setPosition(stupid.scroll.x + (stupid.width / 2), stupid.scroll.y + (stupid.height / 2));
 		add(camFollowPos);
+	
+		#if android
+		addVirtualPad(LEFT_RIGHT, A_B);
+		#end
 
 		//if (PlayState.deathCounter > 1)
 			//canEnd = true;

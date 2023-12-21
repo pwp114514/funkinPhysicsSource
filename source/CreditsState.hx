@@ -175,6 +175,12 @@ class CreditsState extends MusicBeatState
 		var backButton:MenuBackButton = new MenuBackButton(new MainMenuState());
 		add(backButton);
 		
+		#if android
+		addVirtualPad(UP_DOWN, NONE);
+		_virtualpad.buttonUp.y -= 200;
+		_virtualpad.buttonDown.y -= 200;
+		#end
+	
 		bg.color = getCurrentBGColor();
 		intendedColor = bg.color;
 		changeSelection();
