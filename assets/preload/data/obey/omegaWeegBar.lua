@@ -24,7 +24,7 @@ function onUpdate(elapsed)
         setHealth(0)
     end
     if curBeat >= 424 then
-        if keyJustPressed('space') then
+        if keyJustPressed('space') or mouseClicked('left') then
             setProperty('spaceMashImage.alpha', getProperty('spaceMashImage.alpha') - 0.05)
         end
     end
