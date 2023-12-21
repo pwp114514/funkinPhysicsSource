@@ -84,20 +84,16 @@ import sys.io.File;
 #end
 
 #if VIDEOS_ALLOWED
-//#if (hxCodec >= "2.6.1") 
-//import hxcodec.VideoHandler as MP4Handler;
-//import hxcodec.VideoSprite as MP4Sprite;
-//#elseif (hxCodec == "2.6.0") 
-//import VideoHandler as MP4Handler;
-//import VideoSprite as MP4Sprite;
-//#else 
-//import vlc.MP4Handler; 
-//import vlc.MP4Sprite; 
-//#end
-
-// CODEC 2.5.1 BREAKS THIS SHIT USE 2.6.1 ITS SO MUCH BETTER .5 IS A FUCK KILL EM ALL 1984 I FORGET THE REST IM GOING TO UPDATE TO 3.X.X IN THE NEXT UPDATE USE 2.6.1 FO NOW
-import hxcodec.VideoHandler;
-import hxcodec.VideoSprite;
+#if (hxCodec >= "2.6.1") 
+import hxcodec.VideoHandler as MP4Handler;
+import hxcodec.VideoSprite as MP4Sprite;
+#elseif (hxCodec == "2.6.0") 
+import VideoHandler as MP4Handler;
+import VideoSprite as MP4Sprite;
+#else 
+import vlc.MP4Handler; 
+import vlc.MP4Sprite; 
+#end
 #end
 
 using StringTools;
@@ -326,7 +322,7 @@ class PlayState extends MusicBeatState
 	var rope:BGSprite;
 	var bubbles:BGSprite;
 	#if VIDEOS_ALLOWED
-	var weegeeVideo:VideoSprite;
+	var weegeeVideo:MP4Sprite;
 	#end
 
 	public var songScore:Int = 0;
@@ -2045,7 +2041,7 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		var video:VideoHandlerVolFix = new VideoHandlerVolFix();
+		var video:MP4Handler = new MP4Handler();
 		video.playVideo(filepath);
 		video.finishCallback = function()
 		{
@@ -3619,7 +3615,7 @@ class PlayState extends MusicBeatState
 			vocals.destroy();
 		}
 		canPause = false;
-		var youtoozDeathVideo:VideoSpriteVolFix = new VideoSpriteVolFix();
+		var youtoozDeathVideo:MP4Sprite = new MP4Sprite();
 		youtoozDeathVideo.playVideo(Paths.video('youtoozresized'));
 		youtoozDeathVideo.cameras = [camOther];
 		youtoozDeathVideo.finishCallback = function()
@@ -6673,7 +6669,7 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		var video:VideoSpriteVolFix = new VideoSpriteVolFix();
+		var video:MP4Sprite = new MP4Sprite();
 		video.playVideo(filepath);
 		add(video);
 		video.finishCallback = function()
