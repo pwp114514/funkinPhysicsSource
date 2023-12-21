@@ -104,7 +104,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				checkboxGroup.add(checkbox);
 			} else {
 				optionText.x -= 80;
-				optionText.startPosition.x -= 80;
+				optionText.xAdd.x -= 80;
 				//optionText.xAdd -= 80;
 				var valueText:AttachedText = new AttachedText('' + optionsArray[i].getValue(), optionText.width + 80);
 				valueText.sprTracker = optionText;
