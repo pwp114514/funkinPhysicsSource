@@ -1106,7 +1106,7 @@ class PlayState extends MusicBeatState
 				//load the video offscreen because im too lazy to figure out video caching
 				var fakeWeegeeVideo:VideoSprite = new VideoSprite();
 				fakeWeegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
-				fakeWeegeeVideo.graphicLoadedCallback = function()
+				fakeWeegeeVideo.finishCallback = function()
 				{
 					fakeWeegeeVideo.bitmap.pause();
 					fakeWeegeeVideo.bitmap.dispose();
@@ -4587,7 +4587,7 @@ class PlayState extends MusicBeatState
 	var popupSprite = new Sprite();
 	var popupScrollWin = new Sprite();
 
-	function popupFunction()
+	/*function popupFunction()
 	{
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(0, 255, 0));
 		if (defaultCamZoom < 1)
@@ -4597,7 +4597,7 @@ class PlayState extends MusicBeatState
 		bg.scrollFactor.set();
 		add(bg);
 		FlxTransWindow.getWindowsTransparent();
-	}
+	}*/
 
 	function popupWindow(customWidth:Int, customHeight:Int, ?customX:Int, ?customY:Int, ?customName:String) {
         var display = Application.current.window.display.currentMode;
