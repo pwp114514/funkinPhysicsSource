@@ -92,6 +92,10 @@ class NotesSubState extends MusicBeatSubstate
 		var backButton:MenuBackButton = new MenuBackButton(null);
 		add(backButton);
 		
+			#if android
+		addVirtualPad(FULL, A);
+		#end
+		
 		changeSelection();
 	}
 

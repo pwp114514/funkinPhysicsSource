@@ -100,6 +100,15 @@ class OptionsState extends MusicBeatState
 
 		changeSelection();
 		ClientPrefs.saveSettings();
+		
+		#if android
+		var tipText:FlxText = new FlxText(10, 12, 0, 'Press E to Open Android Controls Menu\nTap screen to select option', 16);
+		tipText.setFormat(Paths.font("syht.ttf"), 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		tipText.borderSize = 2;
+		tipText.scrollFactor.set();
+		tipText.screenCenter(X);
+		addVirtualPad(NONE, D);
+		#end
 
 		super.create();
 	}
@@ -128,6 +137,14 @@ class OptionsState extends MusicBeatState
 		if (controls.ACCEPT) {
 			openSelectedSubstate(options[curSelected]);
 		}
+		
+		#if android
+		if (_virtualpad.buttonD.justPressed) {
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
+			MusicBeatState.switchState(new android.AndroidControlsMenu());
+		}
+		#end
 
 		grpOptions.forEach(function(spr:Alphabet)
 		{
