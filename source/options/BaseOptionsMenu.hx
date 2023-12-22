@@ -121,11 +121,12 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			updateTextFrom(optionsArray[i]);
 		}
 
-		var backButton:MenuBackButton = new MenuBackButton(null);
-		add(backButton);
-
 		changeSelection();
 		reloadCheckboxes();
+		
+		#if android
+		addVirtualPad(FULL, A_B_C);
+		#end
 	}
 
 	public function addOption(option:Option) {
@@ -165,7 +166,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 			if(usesCheckbox)
 			{
-				if(controls.ACCEPT || (FlxG.mouse.justPressed && FlxG.mouse.overlaps(checkboxGroup.members[curSelected])))
+				if(controls.ACCEPT)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					curOption.setValue((curOption.getValue() == true) ? false : true);
@@ -244,7 +245,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				}
 			}
 
-			if(controls.RESET)
+			if(controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
 			{
 				for (i in 0...optionsArray.length)
 				{
