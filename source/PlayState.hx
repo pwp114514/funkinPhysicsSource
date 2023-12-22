@@ -4416,13 +4416,12 @@ class PlayState extends MusicBeatState
 					case 'reveal':
 						#if VIDEOS_ALLOWED
 						//weegeeVideo.alpha = 1;
-						weegeeVideoSprite.alpha = 1;
+						weegeeVideoSprite.visible = 1;
 						#end
 					
 					case 'remove':
 						canPause = true;
 						#if VIDEOS_ALLOWED
-						weegeeVideo.visible = false;
 						weegeeVideoSprite.visible = false;
 						#end
 				}
