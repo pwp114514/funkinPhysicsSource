@@ -1107,7 +1107,7 @@ class PlayState extends MusicBeatState
 
 				#if VIDEOS_ALLOWED
 				//load the video offscreen because im too lazy to figure out video caching
-				var fakeWeegeeVideo:VideoSprite = new VideoSprite();
+				/*var fakeWeegeeVideo:VideoSprite = new VideoSprite();
 				fakeWeegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
 				fakeWeegeeVideo.finishCallback = function()
 				{
@@ -1119,7 +1119,7 @@ class PlayState extends MusicBeatState
 				weegeeVideo.setGraphicSize(Std.int(weegeeVideo.width * 3.75));
 				//precacheList.set('mama_luigi_for_you_mario', 'video');
 				//weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
-				weegeeVideo.alpha = 0.00001;
+				weegeeVideo.alpha = 0.00001;*/
 				#else
 				FlxG.log.warn('Platform not supported!');
 				return;
@@ -1242,7 +1242,7 @@ class PlayState extends MusicBeatState
 				add(gfGhost);
 				add(gfGroup);
 				#if VIDEOS_ALLOWED
-				add(weegeeVideo);
+				//add(weegeeVideo);
 				#end
 				add(bfGhost);
 				add(boyfriendGroup);

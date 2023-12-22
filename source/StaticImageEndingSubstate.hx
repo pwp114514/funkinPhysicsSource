@@ -79,7 +79,9 @@ class StaticImageEndingSubstate extends MusicBeatSubstate
         
        #if android
        addVirtualPad(NONE, A_B);
+       addPadCamera();
        #end
+       
     }
 
     override public function update(elapsed:Float)
