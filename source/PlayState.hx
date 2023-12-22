@@ -1108,12 +1108,11 @@ class PlayState extends MusicBeatState
 
 				#if VIDEOS_ALLOWED
 				//load the video offscreen because im too lazy to figure out video caching
-				weegeeVideo = new MP4Handler(800, 1000);
+				weegeeVideo = new MP4Handler();
 				weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
 				weegeeVideo.alpha = 0.00001;
 				weegeeVideo.visible = false;
 				weegeeVideo.volume = 0;
-				FlxG.stage.removeEventListener('enterFrame', weegeeVideo.update); 
 				
 				weegeeVideoSprite = new FlxSprite();
 				add(weegeeVideoSprite);
@@ -3104,9 +3103,9 @@ class PlayState extends MusicBeatState
 			case 'bikini-bottom-new':
 				if (weegeeVideoSprite != null && weegeeVideo != null)
 				{
-					weegeeVideoSprite.loadGraphic(iweegeeVideo.bitmapData);
+					weegeeVideoSprite.loadGraphic(weegeeVideo.bitmapData);
 					weegeeVideoSprite.screenCenter();
-					
+
 				}
 		}
 
@@ -4411,7 +4410,7 @@ class PlayState extends MusicBeatState
 						weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
 						weegeeVideo.finishCallback = function()
 						{
-							weegeeVideo.destroy();
+							//weegeeVideo.kill();
 						}
 						#end
 					case 'reveal':
