@@ -4397,42 +4397,42 @@ class PlayState extends MusicBeatState
 				);
 
 			case 'Weegee Video Controls':
-				switch(value1.toLowerCase().trim())
-				{
-					case 'play':
-						canPause = false;
-						#if VIDEOS_ALLOWED
-						var filepath:String = Paths.video('mama_luigi_for_you_mario');
-						#if sys
-						if(!FileSystem.exists(filepath))
-						#else
-						if(!OpenFlAssets.exists(filepath))
-						#end
-						{
-							FlxG.log.warn('Couldnt find the YTP :(');
-							return;
-						}
-						weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
-						weegeeVideo.finishCallback = function()
-						{
-							weegeeVideo.destroy();
-						}
-						#else
-						FlxG.log.warn('Platform not supported!');
-						return;
-						#end
-					case 'reveal':
-						#if VIDEOS_ALLOWED
-						weegeeVideo.alpha = 1;
-						#end
+				// switch(value1.toLowerCase().trim())
+				// {
+					// case 'play':
+						// canPause = false;
+						// #if VIDEOS_ALLOWED
+						// var filepath:String = Paths.video('mama_luigi_for_you_mario');
+						// #if sys
+						// if(!FileSystem.exists(filepath))
+						// #else
+						// if(!OpenFlAssets.exists(filepath))
+						// #end
+						// {
+							// FlxG.log.warn('Couldnt find the YTP :(');
+							// return;
+						// }
+						// weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
+						// weegeeVideo.finishCallback = function()
+						// {
+							// weegeeVideo.destroy();
+						// }
+						// #else
+						// FlxG.log.warn('Platform not supported!');
+						// return;
+						// #end
+					// case 'reveal':
+						// #if VIDEOS_ALLOWED
+						// weegeeVideo.alpha = 1;
+						// #end
 					
-					case 'remove':
-						canPause = true;
-						#if VIDEOS_ALLOWED
-						weegeeVideo.visible = false;
-						weegeeVideo.alpha = 0.00001; //fraction alphas dont work ithink 
-						#end
-				}
+					// case 'remove':
+						// canPause = true;
+						// #if VIDEOS_ALLOWED
+						// weegeeVideo.visible = false;
+						// weegeeVideo.alpha = 0.00001; //fraction alphas dont work ithink 
+						// #end
+				// }
 			
 			case 'HealthBar InOut':
 				healthBar.fillDirection = HORIZONTAL_INSIDE_OUT;
