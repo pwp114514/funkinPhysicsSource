@@ -14,7 +14,7 @@ function onCreatePost()
     setProperty('healthBar.flipX',true)
     --650
     --500
-    triggerEvent('Set Haxe Shader', 'game', 'ntsc')
+    --triggerEvent('Set Haxe Shader', 'game', 'ntsc')
 end
 
 function onUpdatePost()
