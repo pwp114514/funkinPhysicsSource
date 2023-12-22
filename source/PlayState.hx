@@ -1055,6 +1055,9 @@ class PlayState extends MusicBeatState
 							weeg.scrollFactor.set(0.85, 0.85);
 							weeg.setPosition(2600, 800);
 							weeg.flipX = false;
+						default:
+							//fuck-
+							
 					}
 					weeg.x -= 900;
 					weeg.y -= 50;
@@ -6358,9 +6361,7 @@ class PlayState extends MusicBeatState
 					spr.dance(true);
 				});
 				awesomeBG2.visible = !awesomeBG2.visible;
-			case 'bikini-bottom-new':
-				if (curBeat % 2 == 0)
-					malleo.dance(true);
+				//fuck-
 		}
 		lastBeatHit = curBeat;
 

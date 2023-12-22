@@ -92,7 +92,9 @@ class ResetScoreSubState extends MusicBeatSubstate
 		}
 		if(controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1);
-			close();
+			FlxTransitionableState.skipNextTransOut = true;
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxG.resetState();
 		} else if(controls.ACCEPT) {
 			if(onYes) {
 				if(week == -1) {

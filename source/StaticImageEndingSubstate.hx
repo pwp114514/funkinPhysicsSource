@@ -76,6 +76,10 @@ class StaticImageEndingSubstate extends MusicBeatSubstate
         FlxTween.tween(fadingBox, {alpha: 0}, 1, {ease: FlxEase.quadInOut, onComplete: function(tween:FlxTween){
             canProceed = true;
         }});
+        
+       #if android
+       addVirtualPad(NONE, A_B);
+       #end
     }
 
     override public function update(elapsed:Float)

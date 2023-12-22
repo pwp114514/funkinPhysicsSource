@@ -69,6 +69,10 @@ class FreeplayWarningSubstate extends MusicBeatSubstate
 			}
 		});
 		FlxTween.tween(warnText, {y: 600}, 1.2, {ease: FlxEase.quadOut});
+		
+		#if android
+		addVirtualPad(NONE, A_B);
+		#end
 	}
 
 	override function update(elapsed:Float)

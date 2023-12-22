@@ -62,7 +62,7 @@ class Alphabet extends FlxSpriteGroup
 		{
 			if (typed)
 			{
-				startTypedText(typingSpeed);
+				addText();
 			}
 			else
 			{
@@ -102,7 +102,7 @@ class Alphabet extends FlxSpriteGroup
 		if (text != "") {
 			if (typed)
 			{
-				startTypedText(typingSpeed);
+				addText();
 			} else {
 				addText();
 			}
