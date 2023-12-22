@@ -1111,6 +1111,7 @@ class PlayState extends MusicBeatState
 				weegeeVideo = new MP4Handler(800, 1000);
 				weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
 				weegeeVideo.alpha = 0.00001;
+				weegeeVideo.visible = false;
 				weegeeVideo.volume = 0;
 				FlxG.stage.removeEventListener('enterFrame', weegeeVideo.update); 
 				
@@ -4415,7 +4416,7 @@ class PlayState extends MusicBeatState
 						#end
 					case 'reveal':
 						#if VIDEOS_ALLOWED
-						weegeeVideo.alpha = 1;
+						//weegeeVideo.alpha = 1;
 						weegeeVideoSprite.alpha = 1;
 						#end
 					
