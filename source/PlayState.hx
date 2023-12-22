@@ -322,7 +322,8 @@ class PlayState extends MusicBeatState
 	var rope:BGSprite;
 	var bubbles:BGSprite;
 	#if VIDEOS_ALLOWED
-	var weegeeVideo:MP4Sprite;
+	var weegeeVideo:MP4Handler;
+	var weegeeVideoSprite:FlxSprite;
 	#end
 
 	public var songScore:Int = 0;
@@ -1107,19 +1108,14 @@ class PlayState extends MusicBeatState
 
 				#if VIDEOS_ALLOWED
 				//load the video offscreen because im too lazy to figure out video caching
-				/*var fakeWeegeeVideo:VideoSprite = new VideoSprite();
-				fakeWeegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
-				fakeWeegeeVideo.finishCallback = function()
-				{
-					fakeWeegeeVideo.bitmap.pause();
-					fakeWeegeeVideo.bitmap.dispose();
-					fakeWeegeeVideo.kill();
-				}
-				weegeeVideo = new VideoSprite(800, 1000);
-				weegeeVideo.setGraphicSize(Std.int(weegeeVideo.width * 3.75));
-				//precacheList.set('mama_luigi_for_you_mario', 'video');
-				//weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
-				weegeeVideo.alpha = 0.00001;*/
+				weegeeVideo = new MP4Handler(800, 1000);
+				weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
+				weegeeVideo.alpha = 0.00001;
+				
+				weegeeVideoSprite = new FlxSprite();
+				add(weegeeVideoSprite);
+				weegeeVideoSprite.cameras = [camHUD];
+				weegeeVideoSprite.alpha = 0.00001;
 				#else
 				FlxG.log.warn('Platform not supported!');
 				return;
@@ -3102,6 +3098,12 @@ class PlayState extends MusicBeatState
 						});
 					}
 				}
+			case 'bikini-bottom-new':
+				if (weegeeVideoSprite != null and weegeeVideo != null)
+				{
+					weegeeVideoSprite.loadGraphic(weegeeVideo.bitmap);
+					weegeeVideoSprite.screenCenter();
+				}
 		}
 
 		if(!inCutscene) {
@@ -4397,42 +4399,32 @@ class PlayState extends MusicBeatState
 				);
 
 			case 'Weegee Video Controls':
-				// switch(value1.toLowerCase().trim())
-				// {
-					// case 'play':
-						// canPause = false;
-						// #if VIDEOS_ALLOWED
-						// var filepath:String = Paths.video('mama_luigi_for_you_mario');
-						// #if sys
-						// if(!FileSystem.exists(filepath))
-						// #else
-						// if(!OpenFlAssets.exists(filepath))
-						// #end
-						// {
-							// FlxG.log.warn('Couldnt find the YTP :(');
-							// return;
-						// }
-						// weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
-						// weegeeVideo.finishCallback = function()
-						// {
-							// weegeeVideo.destroy();
-						// }
-						// #else
-						// FlxG.log.warn('Platform not supported!');
-						// return;
-						// #end
-					// case 'reveal':
-						// #if VIDEOS_ALLOWED
-						// weegeeVideo.alpha = 1;
-						// #end
+				switch(value1.toLowerCase().trim())
+				{
+					case 'play':
+						#if VIDEOS_ALLOWED
+						canPause = false;
+						weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
+						weegeeVideo.finishCallback = function()
+						{
+							weegeeVideo.destroy();
+						}
+						#end
+					case 'reveal':
+						#if VIDEOS_ALLOWED
+						weegeeVideo.alpha = 1;
+						weegeeVideoSprite.alpha = 1;
+						#end
 					
-					// case 'remove':
-						// canPause = true;
-						// #if VIDEOS_ALLOWED
-						// weegeeVideo.visible = false;
-						// weegeeVideo.alpha = 0.00001; //fraction alphas dont work ithink 
-						// #end
-				// }
+					case 'remove':
+						canPause = true;
+						#if VIDEOS_ALLOWED
+						weegeeVideo.visible = false;
+						weegeeVideo.alpha = 0.00001; //fraction alphas dont work ithink 
+						weegeeVideoSprite.alpha = 0.00001;
+						weegeeVideoSprite.visible = false;
+						#end
+				}
 			
 			case 'HealthBar InOut':
 				healthBar.fillDirection = HORIZONTAL_INSIDE_OUT;
