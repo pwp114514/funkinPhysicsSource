@@ -1110,14 +1110,13 @@ class PlayState extends MusicBeatState
 				//load the video offscreen because im too lazy to figure out video caching
 				weegeeVideo = new MP4Handler();
 				weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
-				weegeeVideo.alpha = 0.00001;
 				weegeeVideo.visible = false;
 				weegeeVideo.volume = 0;
 				
 				weegeeVideoSprite = new FlxSprite();
 				add(weegeeVideoSprite);
 				weegeeVideoSprite.cameras = [camHUD];
-				weegeeVideoSprite.alpha = 0.00001;
+				weegeeVideoSprite.visible = false;
 				#else
 				FlxG.log.warn('Platform not supported!');
 				return;
@@ -3104,8 +3103,9 @@ class PlayState extends MusicBeatState
 				if (weegeeVideoSprite != null && weegeeVideo != null)
 				{
 					weegeeVideoSprite.loadGraphic(weegeeVideo.bitmapData);
+					weegeeVideoSprite.setGraphicSize(1280, 720);
+					weegeeVideoSprite.updateHitbox();
 					weegeeVideoSprite.screenCenter();
-
 				}
 		}
 
@@ -4423,8 +4423,6 @@ class PlayState extends MusicBeatState
 						canPause = true;
 						#if VIDEOS_ALLOWED
 						weegeeVideo.visible = false;
-						weegeeVideo.alpha = 0.00001; //fraction alphas dont work ithink 
-						weegeeVideoSprite.alpha = 0.00001;
 						weegeeVideoSprite.visible = false;
 						#end
 				}
