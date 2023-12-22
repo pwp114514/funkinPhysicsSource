@@ -84,7 +84,7 @@ class StaticImageEndingSubstate extends MusicBeatSubstate
         var mouseIsBottomLeft:Bool = FlxG.mouse.getScreenPosition().x <= FlxG.width / 2 && FlxG.mouse.getScreenPosition().y >= FlxG.height / 2;
         var mouseIsBottomRight:Bool = FlxG.mouse.getScreenPosition().x >= FlxG.width / 2 && FlxG.mouse.getScreenPosition().y >= FlxG.height / 2;
 
-		if ((FlxG.mouse.justPressed && mouseIsBottomLeft && !tomfooleryEnding || controls.ACCEPT) && canProceed)
+		if (((FlxG.mouse.justPressed && !tomfooleryEnding) || controls.ACCEPT) && canProceed)
         {
             if (theImages.members.length == 1)
             {
@@ -110,7 +110,7 @@ class StaticImageEndingSubstate extends MusicBeatSubstate
             else
                 theImages.members.pop().alpha = 0;
         }
-        if ((FlxG.mouse.justPressed && mouseIsBottomRight || controls.BACK) && canProceed && theImages.members.length == 1 && !tomfooleryEnding)
+        if ((FlxG.mouse.justPressed || controls.BACK) && canProceed && theImages.members.length == 1 && !tomfooleryEnding)
 		{
             toMainMenu();
             FlxG.mouse.visible = false;
