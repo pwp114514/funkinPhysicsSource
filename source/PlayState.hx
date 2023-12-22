@@ -1111,6 +1111,8 @@ class PlayState extends MusicBeatState
 				weegeeVideo = new MP4Handler(800, 1000);
 				weegeeVideo.playVideo(Paths.video('mama_luigi_for_you_mario'));
 				weegeeVideo.alpha = 0.00001;
+				weegeeVideo.volume = 0;
+				FlxG.stage.removeEventListener('enterFrame', weegeeVideo.update); 
 				
 				weegeeVideoSprite = new FlxSprite();
 				add(weegeeVideoSprite);
@@ -3099,10 +3101,11 @@ class PlayState extends MusicBeatState
 					}
 				}
 			case 'bikini-bottom-new':
-				if (weegeeVideoSprite != null and weegeeVideo != null)
+				if (weegeeVideoSprite != null && weegeeVideo != null)
 				{
-					weegeeVideoSprite.loadGraphic(weegeeVideo.bitmap);
+					weegeeVideoSprite.loadGraphic(iweegeeVideo.bitmapData);
 					weegeeVideoSprite.screenCenter();
+					
 				}
 		}
 
