@@ -4416,7 +4416,7 @@ class PlayState extends MusicBeatState
 					case 'reveal':
 						#if VIDEOS_ALLOWED
 						//weegeeVideo.alpha = 1;
-						weegeeVideoSprite.visible = 1;
+						weegeeVideoSprite.visible = true;
 						#end
 					
 					case 'remove':
